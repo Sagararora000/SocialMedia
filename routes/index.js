@@ -3,5 +3,7 @@ const router = express.Router();
 const homeController = require('../controllers/home_controller');
 
 router.get('/',homeController.home);
-router.get('/users',require('./users'));
+// This is use middle ware for further routes
+router.use('/users',require('./users'));
 return module.exports = router;
+ 
