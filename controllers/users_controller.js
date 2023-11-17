@@ -1,5 +1,5 @@
 const User = require('../models/user');
-module.exports.users = function(req,res){
+module.exports.profile = function(req,res){
     return res.render("user_profile",{
         title:"Basic users page"
     });
@@ -38,4 +38,16 @@ module.exports.create = function(req,res){
 //Part of Manual Authentication
 module.exports.createSession = function(req,res){
     return res.redirect('/');
+}
+
+module.exports.destroySession = function(req,res){
+    req.logout((err)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/');
+        }
+    });
+    
 }

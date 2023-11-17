@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8009;
 const expressLayouts = require('express-ejs-layouts');
@@ -10,6 +11,8 @@ const passportLocal = require('./config/passport-local-strategy');
 
 
 app.use(express.urlencoded());
+
+app.use(cookieParser());
 
 app.use(express.static('./assets'));
 app.use(expressLayouts);
@@ -33,11 +36,13 @@ app.use(session({
     cookie:{
         maxAge: (1000 * 60 * 100)
     }
+    
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(passport.setAuthenticatedUser);
 //use express router
 app.use('/',require('./routes'));
 
