@@ -7,17 +7,22 @@
 
     <!-- Used to style Layout like header,footer in all pages -->
     <link rel="stylesheet" href="/css/layout.css">
-
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
     <!-- Used to style elements in indivdual pages -->
     <%- style %> 
 
 </head>
 <body>
     <%- include('_header');%>
+    <div id="layout-main">
         <%- body %>
+    </div> 
+        
     <%- include('_footer');%>
 
     <!-- Used to style in script in individual pages -->
     <%- script %>
+    <script src="/js/header.js"></script>
 </body>
 </html>
