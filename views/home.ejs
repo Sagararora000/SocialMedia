@@ -8,10 +8,25 @@
             <textarea name="content" id="" cols="30" rows="3" placeholder="Type here"></textarea>
             <input type="submit" value="Post">
         </form>
-        <p style="color:white"><%=locals.postDisplay %></p>
-        
-    <%}else{%>
-        <h1>Log in to Post content</h1>
-    <%}%>
-    
+        <%for(post of posts){%>
+
+
+            <p style="color:white">
+                <%=post.content %>
+            </p>
+            <p>-by <%= post.user.name%>
+            </p>
+            <br>
+
+
+
+
+
+            <%}%>
+
+
+                <%}else{%>
+                    <h1>Log in to Post content</h1>
+                    <%}%>
+
 </section>
