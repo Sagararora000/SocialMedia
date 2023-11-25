@@ -6,6 +6,6 @@ router.get('/',homeController.home);
 // This is use middle ware for further routes
 router.use('/postFeed',require('./posts'));
 router.use('/users',require('./users'));
-
+router.use('/comment',require('./comment'));
 return module.exports = router;
  

@@ -16,17 +16,26 @@
             </p>
             <p>-by <%= post.user.name%>
             </p>
+            
+            <form action="/comment/create" method="post">
+                <textarea name="content" id="" cols="30" rows="3" placeholder="Type here"></textarea>
+                <input type="submit" value="comment">
+            </form>
             <br>
-
-
-
-
-
+            <br>
+            <%for(comment of comments){%>
+                <p><%= comment.content%></p>
+                <p><%= post._id%></p>
+                <p><%= comment.post%></p>
             <%}%>
+            
+        <%}%>
+        
 
+            
 
-                <%}else{%>
-                    <h1>Log in to Post content</h1>
-                    <%}%>
+            <%}else{%>
+                <h1>Log in to Post content</h1>
+                <%}%>
 
 </section>
