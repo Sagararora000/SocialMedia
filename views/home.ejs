@@ -3,39 +3,26 @@
 
 <section id="feed-posts">
     <h4>Posts</h4>
+     
+    <!-- Authentication for posts 1st level check -->
     <%if(locals.user){%>
         <form action="/postFeed" id="new-post-form" method="post">
             <textarea name="content" id="" cols="30" rows="3" placeholder="Type here"></textarea>
             <input type="submit" value="Post">
         </form>
+    <%}%>
+    <ul>
         <%for(post of posts){%>
-
-
-            <p style="color:white">
-                <%=post.content %>
-            </p>
-            <p>-by <%= post.user.name%>
-            </p>
-            
-            <form action="/comment/create" method="post">
-                <textarea name="content" id="" cols="30" rows="3" placeholder="Type here"></textarea>
-                <input type="submit" value="comment">
-            </form>
-            <br>
-            <br>
-            <%for(comment of comments){%>
-                <p><%= comment.content%></p>
-                <p><%= post._id%></p>
-                <p><%= comment.post%></p>
-            <%}%>
-            
+            <li>
+                <p style="color:white">
+                    <%=post.content %>
+                        <br>
+                        <small>
+                            <%= post.user.name%>
+                        </small>
+                </p>
+            </li>
         <%}%>
-        
-
-            
-
-            <%}else{%>
-                <h1>Log in to Post content</h1>
-                <%}%>
+    </ul>
 
 </section>
