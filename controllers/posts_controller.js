@@ -1,3 +1,4 @@
+const { model } = require('mongoose');
 const Post = require('../models/post');
 const { post } = require('../routes');
 
@@ -13,3 +14,4 @@ module.exports.postFeed = function(req,res){
     })
     
 }
+

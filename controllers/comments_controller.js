@@ -1,15 +1,26 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post')
-module.exports.commentPost = function(req,res){
+module.exports.create = function(req,res){
     // console.log("hello");
-    Comment.create({content:req.body.content,user:req.user._id, post: req.post._id}).then(()=>{
-        console.log(post);
-        console.log("hello");
-        return res.redirect('back');
-    }).catch((err)=>{
-        if(err){
-            console.log('error in creating a comment');
-            return ;
+    Post.findById(req.body.post).then((post)=>{
+        if(post){
+            Comment.create({
+                content:req.body.content,
+                post: req.body.post, //or req.post._id 
+                user: req.user._id
+                
+            }).then((comment)=>{
+                //updating the post for the first time in course
+                post.comments.push(comment);
+                post.save() ;//whenever updating something save it to tell the database this is final
+                res.redirect('/');
+            }).catch((err)=>{
+                console.log("error in creating a comment");
+            })
         }
+    }).catch((err)=>{
+        console.log('error in creating the post');
     })
+        
+    
 }
