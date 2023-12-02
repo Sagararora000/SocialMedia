@@ -6,7 +6,7 @@
      
     <!-- Authentication for posts 1st level check -->
     <%if(locals.user){%>
-        <form action="/postFeed" id="new-post-form" method="post">
+        <form action="/posts/create" id="new-post-form" method="post">
             <textarea name="content" id="" cols="30" rows="3" placeholder="Type here"></textarea>
             <input type="submit" value="Post">
         </form>
@@ -15,6 +15,11 @@
         <%for(post of posts){%>
             <li>
                 <p style="color:white">
+                    <% if(locals.user && locals.user.id == post.user.id){ %>
+                    <small>
+                        <a href="/posts/destroy/<%= post.id %>">X</a>
+                    </small>
+                    <%}%>
                     <%=post.content %>
                         <br>
                         <small>
