@@ -21,9 +21,7 @@ module.exports.destroy = function(req,res){
         console.log(post.user.valueOf());
         console.log(req.user.id);
         if(post.user.valueOf() == req.user.id){
-            console.log("its working");
-            console.log("its working again");
-
+            
             Comment.deleteMany({post:req.params.id}).then(()=>{
                 return res.redirect('back');
             })
