@@ -1,6 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-
+const User = require("../models/user");
 module.exports.home = function (req, res) {
   //populate the user of each post
   Post.find({})
@@ -13,10 +13,14 @@ module.exports.home = function (req, res) {
     })
     .then((posts) => {
       // console.log(posts);
-      return res.render("home", {
-        title: "Facebook | Home",
-        posts: posts
-      });
+      User.find({}).then((user)=>{
+        return res.render("home", {
+          title: "Facebook | Home",
+          posts: posts,
+          users: user
+        });
+      })
+      
     })
     .catch((err) => {
       console.log("Error in displaying the post");

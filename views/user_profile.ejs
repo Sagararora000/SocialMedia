@@ -9,5 +9,14 @@ also using lessThan%- style%Gr8ter and LessThan%- script%Gr8terThan in layout.ej
 <link rel="stylesheet" href="/css/user_profile.css">
 <h1>hello this is User profile page</h1>
 
-<p><%= user.name %></p>
-<p><%= user.email %></p>
+<%if(user.id == user_profile.id){%>
+    <form action="/users/update/<%= user_profile.id %>" method="post">
+        <input type="text" name="name" value="<%=user_profile.name %>" placeholder="enter name">
+        <input type="email" name="email" value="<%=user_profile.email%>" placeholder="enter email">
+        <input type="submit" value="Update">
+    </form>
+<%}else{ %>
+    <p><%= user_profile.name %></p>
+    <p><%= user_profile.email %></p>
+<%}%>
+
