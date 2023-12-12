@@ -8,11 +8,11 @@ const db = require('./config/mongoose');
 const session = require('express-session'); 
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-
 //prevents logging in again and again after server is down
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
-
+const flash = require('connect-flash');
+const customWare = require('./config/middleware');
 app.use(sassMiddleware({
     src: './assets/scss',
     dest: './assets/css', //destination
@@ -54,6 +54,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+//use flash after session cookies
+app.use(flash());
+app.use(customWare.setFlash);
 //use express router
 app.use('/',require('./routes'));
 

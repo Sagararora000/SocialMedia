@@ -59,17 +59,23 @@ module.exports.create = function(req,res){
 //sign in and create a session for the user
 //Part of Manual Authentication
 module.exports.createSession = function(req,res){
+    req.flash('success', 'Logged in Successfully')
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req,res){
+    
     req.logout((err)=>{
+        
         if(err){
             console.log(err);
         }
         else{
+            req.flash('success','You have logged out!');
             res.redirect('/');
+            
         }
+        
     });
     
 }
